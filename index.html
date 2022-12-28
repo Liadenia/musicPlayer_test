@@ -11,84 +11,50 @@
 			body{  font-family:"Poppins";   height:100vh;   }
 			.wrapper{
 				height:100%;  
-				background:linear-gradient(0deg, rgb(42, 238, 179) 0%, rgb(221, 97, 25) 100%);
-				display:flex;
-				align-items:center;
-				justify-content:center;  
-				user-select:none;
+				background:linear-gradient(0deg, rgb(5, 35, 75) 0%, rgb(65, 216, 183) 100%);
+				display:flex; align-items:center;  justify-content:center;  
+				user-select:none; /* auto(default), all(클릭으로 선택), none, text:글자선택가능  */
 			}
 			.play-body{
-				width:380px;
-				background:#fff; 
-				padding:25px 30px;
-				border-radius:15px;
+				width:380px;  background:#fff;  padding:25px 30px;  border-radius:15px;
 				box-shadow:3px 4px 8px 0px rgba(0,0,0,0.2);
 			}
 			.m-top{  margin-bottom:25px;  }
 			.m-top>h2{  
-				font-size:30px; 
-				font-weight:300; 
-				color:#252525;
-				text-align:center;
-				background: linear-gradient(0deg, rgb(241, 222, 49) 0%, rgb(255, 0, 128) 100%);
-				background-clip:text; -webkit-background-clip:text;  color:transparent;
+				font-size:30px;   font-weight:300;   color:#252525;  text-align:center;
+				background: linear-gradient(0deg, rgb(208, 172, 54) 0%, rgb(0, 255, 179) 100%);
+				background-clip:text;		-webkit-background-clip:text;  color:transparent;
 			}
 			.m-img{
-				width:100%;
-				height:260px;
-				border-radius:15px;
-				background:#fc9;
+				width:100%;  height:260px;  border-radius:15px;  background:#fc9;
 				overflow:hidden;
 			}
-			.m-img>img{
-				width:100%;  height:145%;  
+			.m-img > img{
+				width:100%;  height:100%;  
 				object-fit:cover; 
-				object-position:center bottom;
+				/* fill(비율유지없이가득채움), contain(비율유지,전체이미지), cover(비율유지가득), none(크기조절없음), scale-down( none, contain중 크기 작은값 )  */
+				object-position:center bottom;  /* left,center,right top,center,bottom  %  px */
 			}
-			.m-info{ 
-				font-size:20px;  
-				margin:30px; 
-				text-align:center;
-			}
-			.m-info .artist{  
-				font-size:18px; 
-				color:#626263; 
-				font-weight:300;
-			}
+			.m-info{  font-size:20px;   margin:30px;  text-align:center; }
+			.m-info .artist{   font-size:18px;  color:#626263;  font-weight:300;  }
 
 			.m-progress{
-				height:6px;
-				width:100%;
-				border-radius:3px; 
-				background:#e0e0e0; 
+				height:6px;  width:100%;   border-radius:3px;   background:#e0e0e0; 
 			}
-			.m-progress>.bar{
-				height:6px; 
-				width:10%;
-				border-radius:3px; 
-				background:#230975;
+			.m-progress > .bar{
+				height:6px;  width:10%;/*0%*/ border-radius:3px;  background:#230975;
 			}
-			.m-progress>.timer{
-				margin-top:5px;
-				display:flex; 
-				justify-content:space-between; 
-				font-size:14px;
+			.m-progress > .timer{
+				margin-top:5px;  display:flex;  justify-content:space-between;  font-size:14px;
 				color:#5d5d5d;
 			}
 			.m-control{  
-				margin-top:40px;
-				display:flex; 
-				justify-content:space-between;
-				align-items:center;
+				margin-top:40px;  display:flex;  justify-content:space-between;  align-items:center;
 			}
-			.m-control span{ font-size:28px; }
+			.m-control span{				font-size:28px;			}
 			.m-control .play-pause{
-				width:54px; height:54px;
-				background:#999; 
-				border-radius:27px;
-				display:flex; 
-				justify-content:center; 
-				align-items:center;
+				width:54px;  height:54px;  background:#999;   border-radius:27px;
+				display:flex;  justify-content:center;  align-items:center;
 			}
 		</style>
 	</head>
@@ -102,11 +68,11 @@
 					<img src="images/album1.jpg" alt="앨범1">
 				</div>
 				<div class="m-info">
-					<p class="name">Oasis - Bag It Up</p>
-					<p class="artist">Oasis</p>
+					<p class="name">Alone</p>
+					<p class="artist">Color Out</p>
 				</div>
 				<div class="m-progress">
-					<div class="bar"><audio id="main-audio" src="songs/Bag_It_Up.mp3"></audio></div>
+					<div class="bar"><audio id="main-audio" src="songs/Alone.mp3"></audio></div>
 					<div class="timer">
 						<span class="current">0:00</span>
 						<span class="duration">0:00</span>
@@ -129,7 +95,7 @@
 			const musicAudio=musicWrap.querySelector("#main-audio");
 			const playBtn=musicWrap.querySelector("#play-btn");
 			const musicPlay=()=>{
-				playBtn.innerHTML="pause";
+				playBtn.innerHTML="pause"; // musicWrap.querySelector("#play-btn img").src="~.svg" 이미지 교체시(src)
 				musicAudio.play();
 			}
 			const musicPause=()=>{
@@ -137,19 +103,19 @@
 				musicAudio.pause();
 			}
 			playBtn.addEventListener("click",()=>{
-				let getText=playBtn.innerText;
+				let getText=playBtn.innerText; // playBtn.innerHTML
 				(getText=="pause")? musicPause() : musicPlay();
 			});
 
-			let list_index=0;
+			let list_index=0; //musicList[0] --> musicList[5] 순환호출
 			const albumImg=musicWrap.querySelector(".m-img>img");
 			const m_name=musicWrap.querySelector(".name");
-			const m_artist=musicWrap.querySelector(".artist"); 
+			const m_artist=musicWrap.querySelector(".artist"); //musicAudio
 			const loadMusic=(num)=>{
-				albumImg.src=`images/${musicList[num].img}.jpg`; 	
+				albumImg.src=`images/${musicList[num].img}.jpg`; 	//img경로
 				musicAudio.src=`songs/${musicList[num].audio}.mp3`;	//audio경로
-				m_name.innerText=musicList[num].name;
-				m_artist.innerText=musicList[num].artist;
+				m_name.innerText=musicList[num].name;			    //name글자정보 innerHTML 사용가능
+				m_artist.innerText=musicList[num].artist;			//artist글자정보 innerHTML 사용가능
 			}
 
 			window.addEventListener("load",()=>{
@@ -167,6 +133,7 @@
 			const nextMusic=()=>{
 				list_index++;
 				if(list_index>=musicList.length){ list_index=0; }
+				// (list_index>musicList.length)? list_index=0:list_index-list_index;
 				loadMusic(list_index);
 				musicPlay();
 			}
@@ -183,10 +150,10 @@
 			const totalTime=progressive.querySelector(".duration");
 			// this, event.target , event.currentTarget
 			musicAudio.addEventListener("timeupdate",(event)=>{
-				let current=event.target.currentTime;
+				let current=event.target.currentTime;// 재생시간 표시
 				let duration=event.target.duration;
-				let progressRatio=(current/duration)*100; 
-				progressBar.style.width=`${progressRatio}%`; 
+				let progressRatio=(current/duration)*100; //백분율 계산
+				progressBar.style.width=`${progressRatio}%`; //progressRatio+"%"
 				// 진행바 넓이지정
 				let currentMin=Math.floor(current/60);
 				let currentSec=Math.floor(current%60);
@@ -194,15 +161,21 @@
 				playTime.innerHTML=`${currentMin}:${currentSec}`;
 
 				musicAudio.addEventListener("loadeddata",()=>{
-					let totalDuration=musicAudio.duration;
+					let totalDuration=musicAudio.duration; //console.log(totlaDuration, duration);
 					let totalMin=Math.floor(totalDuration/60);
 					let totalSec=Math.floor(totalDuration%60);
-					if(totalSec<10){ totalSec= `0${totalSec}`;}
+					if(totalSec<10){ totalSec= `0${totalSec}`; /*"0"+totalSec*/}
 					totalTime.innerHTML=`${totalMin}:${totalSec}`;
 					//전체시간 표시
 				});
 			});
 
+			/*
+				obj.clientWidth, .clientHeight (padding포함 크기 인식)
+				obj.offsetWidth, .offsetHeight (border포함 크기 인식, 자식요소 크기 포함인식)
+				obj.getBoundingClientRect() -- .width, .height, ( border+padding 포함, 소수표기가능성 )
+			*/
+			// music play bar 지점 클릭시 그 시간에서 재생
 			progressive.addEventListener("click",()=>{
 				let maxWidth=progressive.clientWidth;
 				let clickXposition=event.offsetX;
@@ -211,10 +184,11 @@
 				musicPlay();
 			});
 
+			// music play 새로고침 버튼 - 여러가지 종류추가시 if문 사용 -
 			const mRepeat=musicWrap.querySelector("#repeat-btn");
 			musicAudio.addEventListener("ended",()=>{
 				let getText=mRepeat.innerText;
-				if(getText=="repeat"){nextMusic();}
+				if(getText=="repeat"){nextMusic();} // repeat, repeat-one, shuffle 구분용 조건문
 			});
 
 		</script>
