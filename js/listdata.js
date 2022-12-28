@@ -1,39 +1,39 @@
 
 const musicList=[
     {
-        name:"Alone",
-        artist:"Color Out",
+        name:"Bag It Up",
+        artist:"Oasis",
         img:"album1",
-        audio:"Alone"
+        audio:"Bag_It_Up"
     },
     {
-        name:"Mahidevran - Maze of sorrow",
-        artist:"Mahidevran rock band",
+        name:"Up In The Sky",
+        artist:"Oasis",
         img:"album2",
-        audio:"Mahidevran-Maze_of_sorrow"
+        audio:"Up_In_The_Sky"
     },
     {
-        name:"No Rest Or Endless Res",
-        artist:"Lisofv",
+        name:"Whatever",
+        artist:"Oasis",
         img:"album3",
-        audio:"No_Rest_Or_Endless_Rest"
+        audio:"Whatever"
     },
     {
-        name:"Old Melody",
-        artist:"TAB",
+        name:"Lyla",
+        artist:"Oasis",
         img:"album4",
-        audio:"Old_Melody"
+        audio:"Lyla"
     },
     {
-        name:"Tantalizing Youth",
-        artist:"Social Square",
+        name:"Wonderwall",
+        artist:"Oasis",
         img:"album5",
-        audio:"Tantalizing_Youth"
+        audio:"Wonderwall"
     },
     {
-        name:"The Deep",
-        artist:"Anitek",
+        name:"Champagne Supernova",
+        artist:"Oasis",
         img:"album6",
-        audio:"The_Deep"
+        audio:"Champagne_Supernova"
     }
 ]
